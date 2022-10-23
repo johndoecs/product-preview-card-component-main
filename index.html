@@ -57,8 +57,137 @@
 
     }
 
-    @media (min-width: 50em) {}
+    @media (min-width: 35em) {
+      picture {
+        display: revert;
+      }
+    }
 
+    body {
+      background-color: var(--clr-primary-200);
+      display: grid;
+      place-content: center;
+      color: var(--clr-neutral-500);
+      font-family: var(--ff-primary);
+      font-size: var(--fs-400);
+    }
+
+    .card {
+      max-width: 40rem;
+      display: flex;
+      flex-direction: column;      
+      background-color: var(--clr-neutral-100);
+      border-radius: var(--size-300);
+      margin-inline: var(--size-700);
+    }
+
+    @media (min-width: 35em) {
+      .card {
+        flex-direction: revert;
+      }
+    }
+
+    .card > div {
+      flex-basis: 100%;
+    }
+
+    .card-image {
+      /* position: relative; */
+    }
+
+    .card-image img {     
+      border-start-start-radius: var(--size-300);
+      border-start-end-radius: var(--size-300);
+      object-fit: cover;
+      
+    }
+
+    @media (min-width: 35em) {
+      .card-image img {
+      border-start-start-radius: var(--size-300);
+      border-start-end-radius: revert;
+      border-end-start-radius: var(--size-300);
+      /* position: absolute; */
+      height: 100%;
+      }
+    }
+
+    .card-detail {
+      display: flex;
+      flex-direction: column;
+      row-gap: var(--size-500);
+      padding: var(--size-600);
+    }
+
+    .card-detail b {
+      text-transform: uppercase;
+      letter-spacing: var(--size-100);
+    }
+
+    .card-detail h2 {
+      font-family: var(--ff-secondary);
+      font-size: var(--fs-800);
+      line-height: 2.5rem;
+      color: var(--clr-neutral-900);
+    }
+
+    .card-detail p {
+      line-height: var(--size-500);
+    }
+
+    .card-detail .price {
+      display: flex;
+      align-items: center;
+      column-gap: var(--size-500);
+    }
+
+    .price span.discount {
+      font-family: var(--ff-secondary);
+      font-size: var(--fs-700);      
+      color: var(--clr-accent-400);
+    }
+
+    .price span s::before,
+    .price span s::after {
+      clip-path: inset(100%);
+      clip: rect(1px, 1px, 1px, 1px);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    .price span s::before {
+      content: " [start of stricken text] ";
+    }
+
+    .price span s::after {
+      content: " [end of stricken text] ";
+    }
+
+    .card-detail button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: var(--size-300);
+      background-color: var(--clr-accent-400);
+      color: var(--clr-neutral-100);
+      font-family: var(--ff-primary);
+      border: none;
+      border-radius: var(--size-200);
+      padding: 1em 2em;
+      cursor: pointer;      
+    }
+
+    .card-detail button:is(:hover, :focus) { 
+      background-color: var(--clr-accent-600);
+    }
+
+    .card-detail button svg {
+      width: var(--size-400);
+      aspect-ratio: 1;
+    }
 
   </style>
 </head>
@@ -71,7 +200,7 @@
     <div class="card-image">
 
       <picture>
-        <source srcset="images/image-product-desktop.jpg" media="(min-width: 50em)">
+        <source srcset="images/image-product-desktop.jpg" media="(min-width: 35em)">
         <img src="images/image-product-mobile.jpg" alt="Perfume bottle standing between two leaves">
       </picture>
       
@@ -81,7 +210,7 @@
 
       <b>Perfume</b>
 
-      <h2>Gabrielle Essence Eau De Parfum</h2>
+      <h2 lang="fr">Gabrielle Essence Eau De Parfum</h2>
 
       <p>
         A floral, solar and voluptuous interpretation composed by Olivier Polge,
@@ -89,12 +218,12 @@
       </p>
 
       <div class="price">
-        <span>$149.00</span>
+        <span class="discount">$149.00</span>
         <span><s>$169.99</s></span>
       </div>
 
       <button>
-        <svg class="icon">
+        <svg class="icon" aria-hidden="true">
           <use xlink:href="images/icon-cart.svg#icon-cart"></use>
         </svg>
         Add to Cart
